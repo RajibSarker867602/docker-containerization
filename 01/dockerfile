@@ -1,0 +1,5 @@
+FROM nginx::stable-alpine3.19-slim as base
+COPY ./simple-webapp/ /usr/share/nginx/html
+
+# FROM nginx as final
+# COPY --from=base /usr/share/nginx/html /src/
