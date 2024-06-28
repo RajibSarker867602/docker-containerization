@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DockerNETCoreApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1e506749353456bafc29f6ac04dc7975cf64ad85")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4523647d2fb05c5e4952066f0277f2fb20c4975e")]
 [assembly: System.Reflection.AssemblyProductAttribute("DockerNETCoreApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DockerNETCoreApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
