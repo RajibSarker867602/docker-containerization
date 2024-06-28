@@ -11,7 +11,6 @@
 # ENTRYPOINT [ "dotnet", "DockerNETCoreApp.dll" ]
 
 
-
 FROM mcr.microsoft.com/dotnet/sdk:8.0 as build
 WORKDIR /app
 COPY . .
@@ -22,3 +21,9 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 as final
 WORKDIR /src
 COPY --from=build /app/out .
 ENTRYPOINT [ "dotnet", "DockerNETCoreApp.dll" ]
+
+
+
+# --build comands
+# docker build -t dockernetcoreapp-image:1.0.0 .
+# docker run --name=dockernetcoreapp-container -p 8088:5000 -e DOTNET_URLS=http://+:5000 dockernetcoreapp-image:1.0.0
