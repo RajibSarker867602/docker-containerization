@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "K3aVp4JIq8g1p2Db+UfYEVVTz71mRIQbFjNOTOwWv6QFGhDgIYOPcRNFAwBjXPGNB4ix1GnEoxh72Z9cm9HnJQ==",
+  "success": true,
+  "projectFilePath": "D:\\Projects & Planning\\Practice Projects\\Docker\\docker-containerization\\02\\DockerNETCore\\DockerNETCoreApp\\DockerNETCoreApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Raju Sarker\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.6\\microsoft.visualstudio.azure.containers.tools.targets.1.19.6.nupkg.sha512"
+  ],
+  "logs": []
+}

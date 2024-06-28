@@ -1,0 +1,7 @@
+D:\app\DockerNETCoreApp.exe
+D:\app\appsettings.Development.json
+D:\app\appsettings.json
+D:\app\DockerNETCoreApp.dll
+D:\app\DockerNETCoreApp.deps.json
+D:\app\DockerNETCoreApp.runtimeconfig.json
+D:\app\DockerNETCoreApp.pdb

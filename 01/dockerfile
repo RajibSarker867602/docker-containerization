@@ -3,3 +3,28 @@ COPY ./simple-webapp/ /usr/share/nginx/html
 
 # FROM nginx as final
 # COPY --from=base /usr/share/nginx/html /src/
+
+
+# docker build -f "D:\Projects & Planning\Practice Projects\Docker\docker-containerization\02\DockerNETCore\DockerNETCoreApp\Dockerfile" --force-rm 
+# -t dockernetcoreapp:dev --target base  --build-arg "BUILD_CONFIGURATION=Debug" 
+# --label "com.microsoft.created-by=visual-studio"
+#  --label "com.microsoft.visual-studio.project-name=DockerNETCoreApp" 
+#  "D:\Projects & Planning\Practice Projects\Docker\docker-containerization\02\DockerNETCore" 
+
+
+# docker run -dt -v "C:\Users\Raju Sarker\vsdbg\vs2017u5:/remote_debugger:rw" 
+# -v "C:\Users\Raju Sarker\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro" 
+# -v "C:\Users\Raju Sarker\AppData\Roaming\Microsoft\UserSecrets:/home/app/.microsoft/usersecrets:ro" 
+# -v "C:\Users\Raju Sarker\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro" 
+# -v "C:\Users\Raju Sarker\AppData\Roaming\ASP.NET\Https:/home/app/.aspnet/https:ro"
+#  -v "C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Sdks\Microsoft.Docker.Sdk\tools\TokenService.Proxy\linux-x64\net6.0:/TokenService.Proxy:ro" 
+#  -v "C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Sdks\Microsoft.Docker.Sdk\tools\HotReloadProxy\linux-x64\net8.0:/HotReloadProxy:ro"
+#   -v "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\HotReload:/HotReloadAgent:ro" 
+#   -v "D:\Projects & Planning\Practice Projects\Docker\docker-containerization\02\DockerNETCore\DockerNETCoreApp:/app" 
+#   -v "D:\Projects & Planning\Practice Projects\Docker\docker-containerization\02\DockerNETCore:/src/"
+#    -v "C:\Users\Raju Sarker\.nuget\packages\:/.nuget/fallbackpackages2" 
+#    -v "C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/.nuget/fallbackpackages" 
+#    -e "ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true" -e "ASPNETCORE_ENVIRONMENT=Development"
+#     -e "DOTNET_USE_POLLING_FILE_WATCHER=1" -e "NUGET_PACKAGES=/.nuget/fallbackpackages2" 
+#     -e "NUGET_FALLBACK_PACKAGES=/.nuget/fallbackpackages;/.nuget/fallbackpackages2" 
+#     -P --name DockerNETCoreApp --entrypoint tail dockernetcoreapp:dev -f /dev/null 

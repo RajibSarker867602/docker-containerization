@@ -1,0 +1,23 @@
+# FROM mcr.microsoft.com/dotnet/sdk:8.0 as build
+# WORKDIR /app
+# COPY . .
+# RUN dotnet restore
+# RUN dotnet publish -c Release -o out
+
+# FROM mcr.microsoft.com/dotnet/sdk:8.0 as final
+# WORKDIR /src
+# COPY --from=build /app/out .
+# ENTRYPOINT [ "dotnet", "DotNet.Docker.dll" ]
+
+
+
+
+FROM mcr.microsoft.com/dotnet/sdk:8.0 as build
+WORKDIR /src
+COPY . .
+RUN dotnet restore "DotNet.Docker.csproj"
+RUN dotnet publish -c Release -o out
+WORKDIR /src/out
+ENTRYPOINT [ "dotnet", "DotNet.Docker.dll" ]
+
+
