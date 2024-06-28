@@ -1,0 +1,11 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0 as build
+WORKDIR /app
+EXPOSE 5000
+COPY . .
+RUN dotnet restore
+RUN dotnet publish -c Release -o out
+
+FROM mcr.microsoft.com/dotnet/sdk:8.0 as final
+WORKDIR /src
+COPY --from=build /app/out .
+ENTRYPOINT [ "dotnet", "mywebapp.dll" ]
