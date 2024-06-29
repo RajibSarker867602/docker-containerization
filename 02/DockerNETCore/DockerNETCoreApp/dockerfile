@@ -1,4 +1,6 @@
-﻿# FROM mcr.microsoft.com/dotnet/sdk:8.0 as build
+﻿# --version 01:
+
+# FROM mcr.microsoft.com/dotnet/sdk:8.0 as build
 # WORKDIR /src
 # COPY ./DockerNETCoreApp.csproj ./
 # RUN dotnet restore "DockerNETCoreApp.csproj"
@@ -10,21 +12,49 @@
 # COPY --from=build /app .
 # ENTRYPOINT [ "dotnet", "DockerNETCoreApp.dll" ]
 
+# --version 02:
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0 as build
-WORKDIR /app
-COPY . .
-RUN dotnet restore
-RUN dotnet publish -c Release -o out
+# FROM mcr.microsoft.com/dotnet/sdk:8.0 as build
+# WORKDIR /app
+# COPY . .
+# RUN dotnet restore
+# RUN dotnet publish -c Release -o out
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0 as final
-WORKDIR /src
-ENV DOTNET_URLS=http://+:5000
-COPY --from=build /app/out .
-ENTRYPOINT [ "dotnet", "DockerNETCoreApp.dll" ]
-
-
+# FROM mcr.microsoft.com/dotnet/sdk:8.0 as final
+# WORKDIR /src
+# ENV DOTNET_URLS=http://+:5000
+# COPY --from=build /app/out .
+# ENTRYPOINT [ "dotnet", "DockerNETCoreApp.dll" ]
 
 # --build comands
 # docker build -t dockernetcoreapp-image:1.0.0 .
 # docker run --name=dockernetcoreapp-container -p 8088:5000 -e DOTNET_URLS=http://+:5000 dockernetcoreapp-image:1.0.0
+
+
+# --version 03:
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 as base
+WORKDIR /app
+EXPOSE 8080
+EXPOSE 8081
+
+FROM mcr.microsoft.com/dotnet/sdk:8.0 as build
+WORKDIR /src
+ARG BUILD_CONFIGURATION=Release
+COPY ["DockerNETCoreApp.csproj", "DockerNETCoreApp/"]
+RUN dotnet restore "DockerNETCoreApp/DockerNETCoreApp.csproj"
+COPY . .
+WORKDIR "/src/DockerNETCoreApp"
+RUN dotnet build DockerNETCoreApp.csproj -c $BUILD_CONFIGURATION -o /app/build
+
+
+FROM build as publish
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "DockerNETCoreApp.csproj" -c $BUILD_CONFIGURATION -o /app/publish
+
+FROM base as final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT [ "dotnet", "DockerNETCoreApp.dll" ]
+
+

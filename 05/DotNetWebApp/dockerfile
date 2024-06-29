@@ -1,0 +1,25 @@
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 as base
+WORKDIR /app
+EXPOSE 8080
+EXPOSE 8081
+
+FROM mcr.microsoft.com/dotnet/sdk:8.0 as build
+WORKDIR /src
+ARG BUILD_CONFIGURATION=Release
+COPY ["DotNetWebApp/DotNetWebApp.csproj", "DotNetWebApp/"]
+RUN dotnet restore "DotNetWebApp/DotNetWebApp.csproj"
+COPY . .
+WORKDIR "/src/DotNetWebApp"
+RUN dotnet build DotNetWebApp.csproj -c $BUILD_CONFIGURATION -o /app/build
+
+FROM build as publish
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "DotNetWebApp.csproj" -c $BUILD_CONFIGURATION -o /app/publish
+
+FROM base as final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT [ "dotnet", "DotNetWebApp.dll" ]
+
+
+# docker run --name dotnetwebapp-container -p 8080:8080 rajibsarker/dotnetwebapp
